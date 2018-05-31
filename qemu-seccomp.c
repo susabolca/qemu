@@ -135,7 +135,6 @@ static uint32_t qemu_seccomp_get_kill_action(void)
     return SCMP_ACT_TRAP;
 }
 
-
 static int seccomp_start(uint32_t seccomp_opts)
 {
     int rc = 0;
