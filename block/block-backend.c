@@ -1223,6 +1223,7 @@ static void blk_read_entry(void *opaque)
 
     rwco->ret = blk_co_preadv(rwco->blk, rwco->offset, qiov->size,
                               qiov, rwco->flags);
+    aio_wait_kick();
 }
 
 static void blk_write_entry(void *opaque)
@@ -1232,6 +1233,7 @@ static void blk_write_entry(void *opaque)
 
     rwco->ret = blk_co_pwritev(rwco->blk, rwco->offset, qiov->size,
                                qiov, rwco->flags);
+    aio_wait_kick();
 }
 
 static int blk_prw(BlockBackend *blk, int64_t offset, uint8_t *buf,
@@ -1543,6 +1545,7 @@ static void blk_ioctl_entry(void *opaque)
 
     rwco->ret = blk_co_ioctl(rwco->blk, rwco->offset,
                              qiov->iov[0].iov_base);
+    aio_wait_kick();
 }
 
 int blk_ioctl(BlockBackend *blk, unsigned long int req, void *buf)
@@ -1589,6 +1592,7 @@ static void blk_flush_entry(void *opaque)
 {
     BlkRwCo *rwco = opaque;
     rwco->ret = blk_co_flush(rwco->blk);
+    aio_wait_kick();
 }
 
 int blk_flush(BlockBackend *blk)
@@ -2028,6 +2032,7 @@ static void blk_pdiscard_entry(void *opaque)
     QEMUIOVector *qiov = rwco->iobuf;
 
     rwco->ret = blk_co_pdiscard(rwco->blk, rwco->offset, qiov->size);
+    aio_wait_kick();
 }
 
 int blk_pdiscard(BlockBackend *blk, int64_t offset, int bytes)
