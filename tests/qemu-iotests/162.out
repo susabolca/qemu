@@ -1,7 +1,7 @@
 QA output created by 162
 
 === NBD ===
-qemu-img: Could not open 'json:{"driver": "nbd", "host": 42}': Failed to connect socket: Invalid argument
+qemu-img: Could not open 'json:{"driver": "nbd", "host": 42}': Failed to connect socket: Network is unreachable
 image: nbd://localhost:PORT
 image: nbd+unix://?socket=42
 
