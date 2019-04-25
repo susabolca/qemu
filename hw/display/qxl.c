@@ -768,6 +768,9 @@ static void interface_release_resource(QXLInstance *sin,
     uint32_t prod;
     uint64_t id;
 
+    if (!ext.info) {
+        return;
+    }
     if (ext.group_id == MEMSLOT_GROUP_HOST) {
         /* host group -> vga mode update request */
         QXLCommandExt *cmdext = (void *)(intptr_t)(ext.info->id);
