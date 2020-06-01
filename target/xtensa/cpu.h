@@ -309,8 +309,8 @@ struct CPUXtensaState;
 typedef struct xtensa_tlb_entry {
     uint32_t vaddr;
     uint32_t paddr;
-    uint8_t asid;
-    uint8_t attr;
+    uint32_t asid;
+    uint32_t attr;
     bool variable;
 } xtensa_tlb_entry;
 
